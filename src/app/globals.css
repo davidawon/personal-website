@@ -166,3 +166,30 @@ html {
   transform: translate(-50%, -50%);
   transition: left 0.3s ease, top 0.3s ease;
 }
+
+/* Profile photo */
+.profile-frame {
+  position: relative;
+}
+.profile-frame::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #6366f1, #a78bfa, #818cf8, #6366f1);
+  background-size: 300% 300%;
+  animation: gradient-shift 6s ease infinite;
+  z-index: -1;
+}
+.profile-frame::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 1.5rem;
+  background: linear-gradient(135deg, #6366f1, #a78bfa, #818cf8, #6366f1);
+  background-size: 300% 300%;
+  animation: gradient-shift 6s ease infinite;
+  filter: blur(20px);
+  opacity: 0.4;
+  z-index: -2;
+}

@@ -2,6 +2,7 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import Image from "next/image";
 
 const stats = [
   { value: "3+", label: "Years Experience" },
@@ -31,12 +32,44 @@ export default function About() {
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-5 gap-12 md:gap-16">
+        <div className="grid md:grid-cols-12 gap-12 md:gap-8">
+          {/* Profile Photo */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="md:col-span-3 flex justify-center md:justify-start"
+          >
+            <div className="relative">
+              <div className="profile-frame rounded-3xl overflow-hidden w-64 h-80 md:w-64 md:h-80 lg:w-72 lg:h-96">
+                <Image
+                  src="/david-profile.jpg"
+                  alt="David Awonaike"
+                  width={288}
+                  height={384}
+                  className="w-full h-full object-cover object-top rounded-3xl"
+                  priority
+                />
+              </div>
+              {/* Decorative dots */}
+              <div className="absolute -bottom-4 -right-4 w-24 h-24 opacity-20">
+                <div className="grid grid-cols-4 gap-2">
+                  {Array.from({ length: 16 }).map((_, i) => (
+                    <div key={i} className="w-1.5 h-1.5 rounded-full bg-accent" />
+                  ))}
+                </div>
+              </div>
+              {/* Accent line */}
+              <div className="absolute -left-4 top-8 w-1 h-20 bg-gradient-to-b from-accent to-transparent rounded-full" />
+            </div>
+          </motion.div>
+
+          {/* Bio text */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="md:col-span-3 space-y-6"
+            className="md:col-span-5 space-y-6 md:pl-2"
           >
             <p className="text-muted text-lg leading-relaxed">
               I&apos;m David Awonaike, a Master&apos;s student in Business Analytics and
@@ -84,11 +117,12 @@ export default function About() {
             </div>
           </motion.div>
 
+          {/* Stats & Education */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="md:col-span-2"
+            className="md:col-span-4"
           >
             <div className="grid grid-cols-2 gap-4">
               {stats.map((stat, i) => (
